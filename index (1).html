@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Murjan.exe</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--g:#39ff88;--p:#8a2be2;--ink:#1a0933;color-scheme:light}
+html{height:100%}*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100%;font-family:"Trebuchet MS",Verdana,sans-serif;color:var(--ink);display:flex;justify-content:center;padding:14px;
+background:radial-gradient(circle at 15% 8%,#b6ffd5 0,transparent 35%),radial-gradient(circle at 90% 90%,#e0b8ff 0,transparent 35%),linear-gradient(160deg,#4a14a0,#9b4dff 45%,#1fd97c);background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:28px 28px}
+.win{position:relative;width:100%;max-width:420px;height:fit-content;background:#efe3ff;border:3px solid #fff;border-radius:14px;box-shadow:0 0 0 3px var(--p),6px 8px 0 #1a0933aa,0 0 30px #39ff88aa;overflow:hidden}
+.bar{background:linear-gradient(90deg,var(--p),#d36bff 55%,var(--g));color:#fff;padding:7px 10px;font-weight:bold;display:flex;justify-content:space-between;text-shadow:1px 1px 0 var(--ink);font-size:14px}
+.bar i{font-style:normal;letter-spacing:4px}
+.body{padding:16px 14px 20px;text-align:center}
+h1{font-size:25px;margin:4px 0;color:var(--p);text-shadow:2px 2px 0 var(--g)}
+.sub{margin:0 0 10px;font-size:14px;color:#4d2b86}
+.btn{font:bold 15px "Trebuchet MS",Verdana,sans-serif;color:#fff;border:2px solid #fff;border-radius:999px;padding:11px 10px;cursor:pointer;background:linear-gradient(#c88bff,#8a2be2 50%,#6a12c4 51%,#a45bff);box-shadow:0 4px 0 #3b0a7a,0 0 12px #c9a0ff;text-shadow:1px 1px 0 var(--ink)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #3b0a7a}
+.btn.g{background:linear-gradient(#b9ffd8,#2be58a 50%,#14b866 51%,#6dffb0);color:var(--ink);text-shadow:none;box-shadow:0 4px 0 #0a6b3a,0 0 12px var(--g)}
+.big{font-size:18px;padding:15px 24px}
+canvas{image-rendering:pixelated;image-rendering:crisp-edges}
+#c,#homeC,#finC{width:300px;max-width:84%;height:auto;background:linear-gradient(#e6fff0,#d9c2ff);border:3px solid var(--p);border-radius:12px}
+#c{cursor:pointer}
+.flowers{display:flex;justify-content:center;align-items:flex-end;gap:10px;margin:6px 0 10px;height:50px}
+.flowers canvas{width:auto;height:44px;animation:sway 3s ease-in-out infinite}
+.flowers canvas:nth-child(2n){animation-delay:-1.2s}
+@keyframes sway{50%{transform:translateY(-6px) rotate(4deg)}}
+.bob{animation:bob 1.2s steps(2) infinite}@keyframes bob{50%{transform:translateY(-5px)}}
+.hop{animation:hop .4s steps(4)}@keyframes hop{50%{transform:translateY(-22px)}}
+.quote{margin:12px 0 0;padding:10px 12px;border:2px dashed var(--p);border-radius:12px;font-size:13px;line-height:1.35;text-align:left}
+.q1{background:#d9ffe9}.q2{background:#f3e3ff}.quote b{display:block;margin-top:4px;color:var(--p);font-size:12px}
+.mood{display:inline-block;margin:8px 0 0;padding:4px 14px;border-radius:999px;background:var(--g);border:2px solid var(--p);font-weight:bold;font-size:14px}
+.stage{position:relative}.say{min-height:44px;margin:8px auto;padding:8px 12px;background:#fff;border:2px solid var(--p);border-radius:12px;font-size:14px;font-weight:bold}
+.stats{display:grid;gap:5px;margin:8px 0 12px;text-align:left;font-size:12px;font-weight:bold}
+.row{display:flex;align-items:center;gap:8px}.row span{width:74px}
+.track{flex:1;height:13px;background:#fff;border:2px solid var(--p);border-radius:8px;overflow:hidden}
+.fill{height:100%;background:linear-gradient(90deg,var(--g),#b9ffd8);transition:width .4s}
+.fill.love{background:linear-gradient(90deg,#d36bff,#ffb3e6)}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fx{position:absolute;font-size:28px;pointer-events:none;animation:up 1.2s forwards}
+@keyframes up{to{transform:translateY(-110px);opacity:0}}
+.hide{display:none!important}
+.ov{position:absolute;inset:0;background:#2a0a5ccc;display:flex;align-items:center;justify-content:center;padding:14px;z-index:5}
+.card{background:#efe3ff;border:3px solid var(--g);border-radius:14px;padding:16px;text-align:center;box-shadow:0 0 24px var(--g)}
+.card p{margin:10px 0;font-weight:bold;font-size:15px;line-height:1.4}
+</style></head>
+<body>
+<div class="win">
+ <div class="bar"><span>♥ Murjan.exe</span><i>_ □ x</i></div>
+
+ <div class="body" id="home">
+  <div class="flowers" id="fl"></div>
+  <h1>hi Lamar I missed you :)</h1>
+  <p class="sub">somebody has been waiting for you…</p>
+  <canvas class="bob" width="22" height="18" id="homeC"></canvas>
+  <p><button class="btn big" id="start">take care of your baby</button></p>
+  <div class="quote q1">“Real firmness is good for every thing. Strut is good for nothing.”<b>— Alexander Hamilton, founding father</b></div>
+  <div class="quote q2">“Neon hearts and lotus skies, we bloom slow in the summer glow.”<b>— a little Lana-inspired line, written for Lamar</b></div>
+  <div class="flowers" id="fl2" style="margin-top:14px"></div>
+ </div>
+
+ <div class="body hide" id="game">
+  <div class="stage"><canvas width="22" height="18" id="c"></canvas></div>
+  <div class="mood" id="mood"></div>
+  <div class="say" id="say">hi Lamar!</div>
+  <div class="stats" id="stats"></div>
+  <div class="acts" id="acts"></div>
+ </div>
+
+ <div class="ov hide" id="fin"><div class="card">
+  <canvas width="22" height="18" id="finC"></canvas>
+  <p id="finT"></p>
+  <button class="btn g" id="finB">okay Murjan 💜</button>
+ </div></div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const HEAD=["...dddd......dddd...","..dppppd....dppppd..","..dppppdbbbbdppppd..","..dpppbbbbbbbbpppd..","...dppbbbbbbbbppd...","....dbbbbbbbbbbd....",".....bbbbbbbbbb.....",".....bbbbbbbbbb.....",".....bbbbbbbbbb.....","......bbbddbbb......",".......wbddbw.......","......wwbddbww......"].map(r=>"."+r+".");
+const BODY=["....bbbbbbbbbbbbbb....","...bbbbbbbbbbbbbbbb...","...bbllllllllllllbb...","...bbllllllllllllbb...","...bbbbb......bbbbb...","...ddddd......ddddd..."];
+const ART=HEAD.concat(BODY);
+const COL={b:"#a56bff",d:"#6a2fc9",p:"#ff9ad5",w:"#fff",l:"#dcc2ff"};
+function px(x,c,col,X,Y){x.fillStyle=col;x.fillRect(X,Y,1,1)}
+function heart(x,X,Y){[[0,0],[2,0],[0,1],[1,1],[2,1],[1,2]].forEach(a=>px(x,0,"#ff3fa4",X+a[0],Y+a[1]))}
+function draw(cv,mood,dirty){
+ const x=cv.getContext("2d");x.clearRect(0,0,22,18);
+ ART.forEach((r,y)=>[...r].forEach((ch,i)=>{if(ch!=".")px(x,0,COL[ch],i,y)}));
+ // tail + lotus crown + blush
+ px(x,0,"#6a2fc9",20,13);px(x,0,"#6a2fc9",21,14);
+ [[9,1,"#39ff88"],[10,1,"#ff9ad5"],[11,1,"#ff9ad5"],[12,1,"#39ff88"],[10,0,"#ff9ad5"],[11,0,"#ff9ad5"]].forEach(a=>px(x,0,a[2],a[0],a[1]));
+ [[7,8],[14,8]].forEach(a=>px(x,0,"#ff7fc4",a[0],a[1]));
+ const K="#1a0933";
+ if(mood=="sleep"||mood=="blink"||mood=="sleepy"){[7,8,12,13].forEach(i=>px(x,0,K,i,6))}
+ else if(mood=="happy"||mood=="excited"){[[7,6],[8,5],[9,6],[12,6],[13,5],[14,6]].forEach(a=>px(x,0,K,a[0],a[1]))}
+ else if(mood=="love"){heart(x,7,5);heart(x,12,5)}
+ else{[[8,6],[8,7],[13,6],[13,7]].forEach(a=>px(x,0,K,a[0],a[1]));px(x,0,"#fff",8,6);px(x,0,"#fff",13,6);
+  if(mood=="sad"){px(x,0,"#5cc8ff",8,8);px(x,0,"#5cc8ff",8,9);px(x,0,K,7,5);px(x,0,K,14,5)}}
+ if(mood=="excited"||mood=="happy"){px(x,0,"#ff3fa4",9,9);px(x,0,"#ff3fa4",12,9)}
+ if(dirty){["5,10","15,11","10,3","6,14","16,15"].forEach(s=>{const [a,b]=s.split(",");px(x,0,"#6b4a2b",+a,+b)})}
+}
+const SPR={
+lotus:{g:[".....p.....","..p..p..p..",".pp.ppp.pp.","ppppppppppp",".pppppyppp.","ggggggggggg"],c:{p:"#e2a8ff",y:"#ffe14d",g:"#2be58a"}},
+lily:{g:["....p....","....p....","..p.p.p..","...ppp...","ppppyyppp","...ppp...","..p.p.p..","....p....","....g...."],c:{p:"#ffffff",y:"#ff9a3d",g:"#14b866"}}};
+function flower(k){const s=SPR[k],cv=document.createElement("canvas");cv.width=s.g[0].length;cv.height=s.g.length;const x=cv.getContext("2d");
+ s.g.forEach((r,y)=>[...r].forEach((ch,i)=>{if(ch!=".")px(x,0,s.c[ch],i,y)}));return cv}
+["fl","fl2"].forEach(id=>["lotus","lily","lotus","lily","lotus"].forEach(k=>$(id).appendChild(flower(k))));
+
+let S={hunger:80,fun:80,clean:80,energy:80,love:70},sleeping=false,temp=null,blink=false,used=new Set();
+try{const s=JSON.parse(localStorage.getItem("murjan"));if(s)S=Object.assign(S,s.S)}catch(e){}
+const save=()=>{try{localStorage.setItem("murjan",JSON.stringify({S}))}catch(e){}};
+const cl=v=>Math.max(0,Math.min(100,v));
+const NM={hunger:"🍉 Belly",fun:"⚽ Fun",clean:"🫧 Clean",energy:"⚡ Energy",love:"💜 Love"};
+function moodNow(){
+ const a=(S.hunger+S.fun+S.clean+S.energy)/4;
+ if(sleeping)return["sleep","sleeping 😴"];
+ if(temp)return temp;
+ if(S.love>85&&a>65)return["love","in love 🥰"];
+ if(a>65)return["happy","happy 😊"];
+ if(S.hunger<30)return["ok","hungry 🍽️"];
+ if(S.energy<30)return["sleepy","sleepy 🥱"];
+ if(a<35||S.love<25)return["sad","sad 🥺"];
+ return["ok","calm 🙂"];}
+function render(){
+ $("stats").innerHTML=Object.keys(NM).map(k=>`<div class="row"><span>${NM[k]}</span><div class="track"><div class="fill ${k=="love"?"love":""}" style="width:${S[k]}%"></div></div></div>`).join("");
+ const m=moodNow();$("mood").textContent="Murjan is "+m[1];
+ draw($("c"),blink&&m[0]!="sleep"?"blink":m[0],S.clean<30);return m[0]}
+const say=t=>$("say").textContent=t;
+function fx(e){const f=document.createElement("div");f.className="fx";f.textContent=e;f.style.left=(15+Math.random()*65)+"%";f.style.top="55%";document.querySelector(".stage").appendChild(f);setTimeout(()=>f.remove(),1200)}
+function hop(){const c=$("c");c.classList.remove("hop");void c.offsetWidth;c.classList.add("hop")}
+function mood(m,ms=3500){temp=m;setTimeout(()=>{temp=null;render()},ms)}
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const A=[
+["feed","🍉 Feed","g",()=>{S.hunger+=25;S.clean-=5;fx("🍉");say(pick(["nom nom nom! yummy!","watermelon!! my favorite!","*happy trumpet* more please!"]))}],
+["play","⚽ Play","",()=>{S.fun+=25;S.energy-=12;S.hunger-=8;fx("⚽");mood(["excited","excited 🤩"]);say("wheee! again again!")}],
+["bath","🫧 Bath","g",()=>{S.clean=100;S.fun-=5;fx("🫧");fx("🫧");say("splish splash! so fresh and clean!")}],
+["sleep","😴 Sleep","",()=>{if(sleeping)return;sleeping=true;say("zzz… zzz… 💤");fx("💤");setTimeout(()=>{sleeping=false;S.energy+=50;say("good morning Lamar!");render();save()},4000)}],
+["hug","🤗 Hug","g",()=>{S.love+=20;fx("🤗");fx("💜");mood(["love","in love 🥰"]);say("big warm hug! I love you Lamar!")}],
+["kiss","💋 Kiss","",()=>{S.love+=25;fx("💋");fx("💋");mood(["love","in love 🥰"]);say("mwah! Murjan kissed you! thank you Lamar 💜")}],
+["dance","💃 Dance","g",()=>{S.fun+=22;S.energy-=10;fx("🎵");fx("💃");mood(["excited","excited 🤩"]);say("♪ look at me go! ♪")}],
+["paint","🎨 Paint","",()=>{S.fun+=18;S.clean-=12;fx("🎨");say("I painted you a green and purple lotus!")}],
+["story","📖 Story","g",()=>{S.energy+=8;S.love+=10;S.fun+=8;fx("📖");say(pick(["once upon a time, a little elephant found a magic lotus…","tell me the one about the lily pond again!"]))}],
+["daddy","📞 Daddy","",()=>{S.love+=5;fx("🥺");mood(["sad","missing daddy 🥺"],4500);say("I miss my daddy… when will you take me back to him? 🥺")}]];
+$("acts").innerHTML=A.map(a=>`<button class="btn ${a[2]}" data-k="${a[0]}">${a[1]}</button>`).join("");
+document.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{
+ if(sleeping){say("shhh, Murjan is sleeping…");return}
+ const a=A.find(z=>z[0]==b.dataset.k);a[3]();
+ Object.keys(S).forEach(k=>S[k]=cl(S[k]));
+ if(a[0]!="sleep")hop();used.add(a[0]);render();save();
+ if(used.size==A.length){used.clear();setTimeout(finale,900)}});
+function finale(){
+ draw($("finC"),"love",false);
+ $("finT").innerHTML="Lamar pressed every button!! 🎉<br>Murjan gives you a big kiss 💋 and says <i>thank you for taking such good care of me</i> 💜<br><br>but… I miss my daddy 🥺<br><b>when will you get back to him?</b>";
+ $("fin").classList.remove("hide");for(let i=0;i<5;i++)setTimeout(()=>fx(pick(["💜","💚","💋","🪷"])),i*200)}
+$("finB").onclick=()=>{$("fin").classList.add("hide");S.love=100;render();save()};
+const TALK=["hehe that tickles!","I love you Lamar!","*trumpet noises* pawoo!","can we play?","you're my favorite person","I'm a very good elephant","I miss my daddy… 🥺"];
+$("c").onclick=()=>{if(sleeping)return;hop();fx("💜");say(pick(TALK))};
+$("start").onclick=()=>{$("home").classList.add("hide");$("game").classList.remove("hide");render();hop()};
+setInterval(()=>{blink=true;render();setTimeout(()=>{blink=false;render()},180)},3200);
+setInterval(()=>{if($("game").classList.contains("hide"))return;
+ S.hunger-=2;S.fun-=2;S.clean-=1;S.love-=1;if(!sleeping)S.energy-=1;Object.keys(S).forEach(k=>S[k]=cl(S[k]));
+ const m=render();
+ if(!sleeping&&!temp){if(m=="sad")say(pick(["Murjan misses you… 🥺","I miss my daddy… when will you take me to him?"]));else if(S.hunger<30)say("my belly is rumbling…")}
+ save()},4000);
+draw($("homeC"),"happy",false);
+</script></body></html>
